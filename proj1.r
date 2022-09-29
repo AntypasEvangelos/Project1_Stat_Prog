@@ -26,3 +26,17 @@ split_punct<-function(text,pun){
 
 # Solution to Q5
 a<-split_punct(a,c(",",".",";","!",":","?"))
+
+# Solution to Q6
+# Submission by Vangelis (basically almost the same solution with Daniel)
+a<-tolower(a) ## turns every letter into lowercase
+a_unique<-unique(a) ## checks for unique words in the text 
+oc<-tabulate(match(a,a_unique))
+
+check<-function(a){
+length(which(oc>a))
+}
+
+# If we choose a=175 length=502, which is roughly 50
+b<-a_unique[which(oc>175)] ## thus we create the vector of common words
+
