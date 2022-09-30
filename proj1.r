@@ -31,12 +31,12 @@ a<- a[-grep("[0123456789]:[0123456789]",a)] ## strip out verse numbers
 
 split_punct<-function(text,pun){                                                                       
   
-  for(i in 1:length(pun)){                                              ## The function takes as input text and a vector containing the punctuation marks
-    remove<-gsub(pun[i],"",text,fixed=TRUE)                             ## We use the gsub function to substitute the punctuation marks with empty strings 
-    check<-grep(pun[i],text,fixed=TRUE)                                 ## We augment the length of the text in order to re-add the special characters back in 
-    empty<- rep("",length(text)+length(check))                          ## 
-    sym<- check+1:length(check)
-    empty[sym]   <- pun[i] 
+  for(i in 1:length(pun)){                                              ## the function takes as input text and a vector containing the punctuation marks
+    remove<-gsub(pun[i],"",text,fixed=TRUE)                             ## we use the gsub function to substitute the punctuation marks with empty strings 
+    check<-grep(pun[i],text,fixed=TRUE)                                 ## and create a new vector containing no punctuation marks 
+    empty<- rep("",length(text)+length(check))                          ## we use the grep function to detect punctuation marks in the original vector
+    sym<- check+1:length(check)							## we create an augmented vector with length equal to the total number of words + total number of punctuation characters
+    empty[sym]   <- pun[i]                                              ## we fill the new vector with elements 
     empty[-sym]<- remove
     text<-empty
   }
@@ -59,12 +59,13 @@ split_punct<-function(text,pun){
 
 ## Solution to Q5
 ## Submission by Daniel
-a<-split_punct(a,c(",",".",";","!",":","?"))
+a<-split_punct(a,c(",",".",";","!",":","?"))					## We split words and punctuation marks
 
 ##------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Solution to Q6
-## Submission/Comments by Vangelis 
+## Submission/Comments by Vangelis
+ 
 a<-tolower(a)                                                              ## we turn every letter into lowercase
 a_unique<-unique(a)                                                        ## we check for every unique word in the text 
 oc<-tabulate(match(a,a_unique))                                            ## we find the frequency of every unique word in the text 
@@ -85,3 +86,6 @@ b<-a_unique[which(oc>162)]                                                 ## we
 b
 
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Solution to Q7
+## Submission by Daniel
