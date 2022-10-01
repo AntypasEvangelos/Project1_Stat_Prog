@@ -35,9 +35,9 @@ split_punct<-function(text,pun){
     remove<-gsub(pun[i],"",text,fixed=TRUE)                             ## we use the gsub function to substitute the punctuation marks with empty strings 
     check<-grep(pun[i],text,fixed=TRUE)                                 ## and create a new vector containing no punctuation marks 
     empty<- rep("",length(text)+length(check))                          ## we use the grep function to detect punctuation marks in the original vector
-    sym<- check+1:length(check)							## we create an augmented vector with length equal to the total number of words + total number of punctuation characters
-    empty[sym]   <- pun[i]                                              ## we fill the new vector with elements 
-    empty[-sym]<- remove
+    sym<- check+1:length(check)							## we create an augmented vector with length equal to the total number of words 
+    empty[sym]   <- pun[i]                                              ## words + total number of punctuation characters 
+    empty[-sym]<- remove                                                ## we fill the new vector with elements
     text<-empty
   }
   text
@@ -59,7 +59,7 @@ split_punct<-function(text,pun){
 
 ## Solution to Q5
 ## Submission by Daniel
-a<-split_punct(a,c(",",".",";","!",":","?"))					## We split words and punctuation marks
+a<-split_punct(a,c(",",".",";","!",":","?"))					   ## We split words and punctuation marks
 
 ##------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -88,4 +88,71 @@ b
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Solution to Q7
-## Submission by Daniel
+## Submission/Comments by Daniel
+
+col_1<-c(match(a,b),NA,NA)
+col_2<-c(NA,match(a,b),NA)
+col_3<-c(NA, NA, match(a,b))
+
+mat_T<-cbind(col_1,col_2,col_3)                                           ## creation of the matrix T
+
+## Remove the first and last two rows
+mat_T2<-mat_T[c(-1,-2,-length(mat_T[,1])+1,-length(mat_T[,1])),]
+
+## Q7c
+rs<-rowSums(mat_T2)
+mat_T3<-mat_T2[which(!is.na(rs)),]
+
+## Q7d
+## generate a 3 dimensional vectors with 0's initially
+
+rawmat<-array(0,c(500,500,500))				                   ## we have calculated that length(b)=500
+
+
+## Run through the table for each row, and 1 to the corresponding entry of the vector rawmat
+
+for(i in 1:length(mat_T3[,3])){
+  vec<-mat_T3[i,]
+  rawmat[vec[1],vec[2],vec[3]]<-rawmat[vec[1],vec[2],vec[3]]+1
+  
+}
+T<-rawmat
+
+## Q7f
+## we produce matrices A, S
+## we generate the pairs
+
+
+mat_A<-cbind(col_1,col_2)
+mat_A<-mat_A[c(-1,-length(mat_T[,1])),]
+rs_A<-rowSums(mat_A)
+mat_A2<-mat_A[which(!is.na(rs_A)),]
+
+rawmatA<-array(0,c(502,502))
+for(i in 1:length(mat_A2[,2])){
+  vec<-mat_A2[i,]
+  rawmatA[vec[1],vec[2]]<-rawmatA[vec[1],vec[2]]+1
+  
+}
+
+A<-rawmatA
+
+## we produce Matrix S
+rawlist<-match(a,b)
+rawlist<- rawlist[-which(is.na(rawlist))]
+
+rawmatS<-rep(0,times=502)
+
+for (i in 1:length(rawlist)){
+ rawmatS[rawlist[i]]<-rawmatS[rawlist[i]]+1 
+  
+}
+S<- rawmatS
+##----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Solution to Q8
+## Submission/Comments by Vangelis 
+
+word<-sample(b,prob=S)[1]								## sampling the first word  
+ii<-match(word,mat_T)
+
