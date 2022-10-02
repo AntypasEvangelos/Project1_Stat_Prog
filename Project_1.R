@@ -66,32 +66,7 @@ for(i in 1:length(mat_T3[,3])){
 }
 T<-rawmat
 
-### 7f
-### Produce Matrix A, S
-### Generate the pairs
-mat_A<-cbind(col_1,col_2)
-mat_A<-mat_A[c(-1,-length(mat_T[,1])),]
-rs_A<-rowSums(mat_A)
-mat_A2<-mat_A[which(!is.na(rs_A)),]
 
-rawmatA<-array(0,c(502,502))
-for(i in 1:length(mat_A2[,2])){
-  vec<-mat_A2[i,]
-  rawmatA[vec[1],vec[2]]<-rawmatA[vec[1],vec[2]]+1
-  
-}
-A<-rawmatA
-
-### Produce Matrix S
-rawlist<-match(a,b)
-rawlist<- rawlist[-which(is.na(rawlist))]
-
-rawmatS<-rep(0,times=502)
-for (i in 1:length(rawlist)){
- rawmatS[rawlist[i]]<-rawmatS[rawlist[i]]+1 
-  
-}
-S<- rawmatS
 
 
 #### Question 8
