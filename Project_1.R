@@ -66,9 +66,14 @@ for(i in 1:length(mat_T3[,3])){
 }
 Tmat<-rawmat
 
+### 7f
+### Produce Matrix A, S
+### Generate the pairs
+mat_A<-cbind(col_1,col_2)
+mat_A<-mat_A[c(-1,-length(mat_T[,1])),]
+rs_A<-rowSums(mat_A)
+mat_A2<-mat_A[which(!is.na(rs_A)),]
 
-<<<<<<< HEAD
-=======
 rawmatA<-array(0,c(length(b),length(b)))
 for(i in 1:length(mat_A2[,2])){
   vec<-mat_A2[i,]
@@ -87,7 +92,6 @@ for (i in 1:length(rawlist)){
   
 }
 Smat<- rawmatS
->>>>>>> 4ca56d70841783df6d1e7e97ae547779e944f626
 
 
 #### Question 8
@@ -131,3 +135,23 @@ wordinS<-sample(b,50,prob = Smat)
 cat(wordinS)
 
 ### Question 10
+
+
+### Use the vector in b
+bnew<-c()
+for (i in 1:500){
+  
+  ### We first extract the words that match the orginial vector b regardless of case
+  trycase<-match(anew,b[i])
+  
+  ### We see the variations of that particular word in vector a (with different cases)
+  vartable<-table(a[which(trycase==1)])
+
+  ### Find the corresponding entry of the max variation 
+  common<-which(vartable==max(vartable))
+  
+  ### We insert the new "version" of that word
+  bnew[i]<-names(common)
+  }
+
+
