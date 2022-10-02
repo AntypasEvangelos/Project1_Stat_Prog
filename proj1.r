@@ -156,4 +156,4 @@ S<- rawmatS
 word<-sample(b,prob=S)[1]								## sampling the first word  
 ii<-match(word,mat_T)
 
-## something trivial
+## something trivial for Jihan
