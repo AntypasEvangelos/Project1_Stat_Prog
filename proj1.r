@@ -13,7 +13,8 @@
 ## Submission by Vangelis
 ## Comments by Vangelis 
 
-setwd("C:\\Users\\Vaggelis Antypas\\Project1_Stat_Prog")                 ## This is purely indicative of Vangelis's path every member of the group used their own path
+## This is purely indicative of Vangelis's path every member of the group used their own path
+setwd("C:\\Users\\Vaggelis Antypas\\Project1_Stat_Prog")                
 
 ## We run the given code to 'clean' the a vector
 
@@ -34,13 +35,25 @@ a<- a[-grep("[0123456789]:[0123456789]",a)] ## Strip out verse numbers
 
 split_punct<-function(text,pun){                                                                       
   
-  for(i in 1:length(pun)){                                ## The function takes as input text and a vector containing the punctuation marks
-    remove<-gsub(pun[i],"",text,fixed=TRUE)               ## We use the gsub function to substitute the punctuation marks with empty strings 
-    check<-grep(pun[i],text,fixed=TRUE)                   ## Use grep to find the indices of the words containing punctuation marks 
-    empty<- rep("",length(text)+length(check))            ## Use rep to create a vector into which the words and punctuation marks will be inserted
-    sym<- check+1:length(check)				    ## "sym" containing the indices(locations) of the punctuation marks in new vector
-    empty[sym]   <- pun[i]                                ## Assign punctuation marks to the elements of new vector empty indexed by sym  
-    empty[-sym]<- remove                                  ## Words are stored in the elements of new vector empty, means all the elements except those indexed by sym.
+  ## The function takes as input text and a vector containing the punctuation marks
+  for(i in 1:length(pun)){                                
+    ## We use the gsub function to substitute the punctuation marks with empty strings 
+    remove<-gsub(pun[i],"",text,fixed=TRUE)
+    
+    ## Use grep to find the indices of the words containing punctuation marks 
+    check<-grep(pun[i],text,fixed=TRUE)                   
+    
+    ## Use rep to create a vector into which the words and punctuation marks will be inserted
+    empty<- rep("",length(text)+length(check))          
+    
+    ## "sym" containing the indices(locations) of the punctuation marks in new vector
+    sym<- check+1:length(check)				    
+    
+    ## Assign punctuation marks to the elements of new vector empty indexed by sym  
+    empty[sym]<- pun[i]        
+    
+    ## Words are stored in the elements of new vector empty, means all the elements except those indexed by sym.
+    empty[-sym]<- remove                                 
     text<-empty                    
   }
   text
@@ -151,6 +164,7 @@ for (i in 1:length(rawlist)){
   
 }
 Smat<- rawmatS
+
 ##----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Solution to Q8
@@ -192,7 +206,8 @@ for (i in 2:50){
     }
   }
 }
-cat(word,sep = '\n')  ## Print out the corresponding text with cat
+## Print out the corresponding text with cat
+cat(word,sep = '\n')  
 
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -231,6 +246,11 @@ for (i in 1:500){
 ## Compare b and bnew
 bcomp<-data.frame(b,bnew)
 
+##---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## A final note on this project, for the sake of keeping record we have tried to report 
+## who submitted a solution/comments.
 
-## A final note on this project, for the sake of keeping record we have tried to report who submitted a solution/comments. However, every submission/comment is not a product ## of isolated work and should be instead treated as a product of collaborative work. As far as we are concerned the distribution of work was roughly uniform.
+## However, every submission/comment is not a product 
+## of isolated work and should be instead treated as a product of collaborative work. 
+## As far as we are concerned the distribution of work was roughly uniform.
