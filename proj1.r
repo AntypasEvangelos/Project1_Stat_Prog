@@ -3,6 +3,13 @@
 
 ##------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## For the sake of keeping a record, we have reported who submitted the solution/ commented in every question.
+## However the submissions are not a product of individual work because we worked by getting together and talking about the questions and 
+## this just cannot be tracked, so to avoid writing each and every one of our names in every question we decided to follow the convention mentioned above.
+## As far as we are concerned the distribution of work was as uniform as possible.
+
+##------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ## Solution to Q1 & Q2
 ## A private github repository was created by Vangelis who added Daniel and Jihan as contributors and uploaded the pg10.txt
 ## The repository can be found at "https://github.com/AntypasEvangelos/Project1_Stat_Prog"
@@ -168,7 +175,7 @@ Smat<- rawmatS
 ##----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Solution to Q8
-## Submission by Daniel
+## Submission by Daniel & Vangelis
 ## Comments by Jihan & Vangelis 
 
 set.seed(0)  ## We could reproduce what we got by using set.seed before sample
@@ -248,9 +255,4 @@ bcomp<-data.frame(b,bnew)
 
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## A final note on this project, for the sake of keeping record we have tried to report 
-## who submitted a solution/comments.
-
-## However, every submission/comment is not a product 
-## of isolated work and should be instead treated as a product of collaborative work. 
-## As far as we are concerned the distribution of work was roughly uniform.
+## End
